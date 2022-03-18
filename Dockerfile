@@ -8,10 +8,16 @@ RUN dnf -y install maven git java-11-openjdk
 WORKDIR /app
 RUN git clone https://github.com/jalmasi/vrspace.git
 
+WORKDIR /config
+RUN cp /app/vrspace/server/src/main/resources/application.properties .
+
 # Now let's build it with Maven
 WORKDIR /app/vrspace
 RUN JAVA_HOME=/usr/lib/jvm/jre-11/ mvn clean install -DskipTests
 
+# Volumes
+VOLUME /config
+VOLUME /worlds
 # The default port that the vrspace server listens on
 EXPOSE 8080
 
