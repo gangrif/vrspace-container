@@ -2,8 +2,8 @@
 FROM registry.access.redhat.com/ubi8/ubi
 
 # Volumes
-VOLUME /config
-VOLUME /worlds
+#VOLUME /config
+#VOLUME /worlds
 
 # Install some dependencies
 RUN dnf -y install maven git java-11-openjdk
@@ -12,8 +12,7 @@ RUN dnf -y install maven git java-11-openjdk
 WORKDIR /app
 RUN git clone https://github.com/jalmasi/vrspace.git
 
-WORKDIR /config
-RUN cp /app/vrspace/server/src/main/resources/application.properties .
+RUN cp /app/vrspace/server/src/main/resources/application.properties /config 
 
 # Now let's build it with Maven
 WORKDIR /app/vrspace
