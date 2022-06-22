@@ -24,4 +24,5 @@ EXPOSE 8080
 
 # And we run vrspace.  
 # This line could use some work, as the server-###-SNAPSHOT.jar file will change if the version of vrspace that's cloned changes.
-CMD ["/usr/lib/jvm/jre-11/bin/java", "-jar", "/app/vrspace/server/target/server-0.4.7-SNAPSHOT.jar", "--spring.config.location=/config/application.properties"]
+#CMD ["/usr/lib/jvm/jre-11/bin/java", "-jar", "/app/vrspace/server/target/server-0.4.7-SNAPSHOT.jar", "--spring.config.location=/application.properties"]
+CMD ["/usr/lib/jvm/jre-11/bin/java", "-jar", "/app/vrspace/server/target/server-0.4.7-SNAPSHOT.jar"]
