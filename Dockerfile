@@ -2,8 +2,8 @@
 FROM registry.access.redhat.com/ubi8/ubi
 
 # Volumes
-#VOLUME /config
-#VOLUME /worlds
+VOLUME /config
+VOLUME /worlds
 
 # Install some dependencies
 RUN dnf -y install maven git java-11-openjdk
@@ -12,7 +12,7 @@ RUN dnf -y install maven git java-11-openjdk
 WORKDIR /app
 RUN git clone https://github.com/jalmasi/vrspace.git
 
-RUN cp /app/vrspace/server/src/main/resources/application.properties /config 
+RUN cp /app/vrspace/server/src/main/resources/application.properties /config/application.properties 
 
 # Now let's build it with Maven
 WORKDIR /app/vrspace
@@ -24,5 +24,4 @@ EXPOSE 8080
 
 # And we run vrspace.  
 # This line could use some work, as the server-###-SNAPSHOT.jar file will change if the version of vrspace that's cloned changes.
-#CMD ["/usr/lib/jvm/jre-11/bin/java", "-jar", "/app/vrspace/server/target/server-0.4.7-SNAPSHOT.jar", "--spring.config.location=/application.properties"]
-CMD ["/usr/lib/jvm/jre-11/bin/java", "-jar", "/app/vrspace/server/target/server-0.4.7-SNAPSHOT.jar"]
+CMD ["/usr/lib/jvm/jre-11/bin/java", "-jar", "/app/vrspace/server/target/server-0.4.7-SNAPSHOT.jar", "--spring.config.location=/application.properties"]
